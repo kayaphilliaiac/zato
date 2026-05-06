@@ -4432,7 +4432,7 @@ if (ENVIRONMENT_IS_NODE) {
           xhr.send(null);
         });
       }
-      return fetch(url, { credentials: "include" }).then((response) => {
+      return fetch(url, { credentials: "omit" }).then((response) => {
         if (response.ok) {
           return response.arrayBuffer();
         }
@@ -4597,7 +4597,7 @@ function instantiateAsync(binary, binaryFile, imports, callback) {
     !ENVIRONMENT_IS_NODE &&
     typeof fetch == "function"
   ) {
-    return fetch(binaryFile, { credentials: "include" }).then(
+    return fetch(binaryFile, { credentials: "omit" }).then(
       (response) => {
         var result = WebAssembly.instantiateStreaming(response, imports);
         return result.then(callback, function (reason) {
