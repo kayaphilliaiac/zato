@@ -230,15 +230,15 @@
 
   let maxparts = 0;
   function getParts(file, start, end) {
-      let parts = [];
-      for (let i = start; i <= end; i++) {
-          parts.push(file + ".part" + i);
-      }
+    let parts = [];
+    for (let i = start; i <= end; i++) {
+        parts.push(file + ".part" + String(i).padStart(2, '0'));
+    }
       maxparts = parts.length+maxparts;
       loadingtext.textContent = "LOADING... ("+doneparts+"/"+maxparts+")";
       return parts;
   }
-        mergeFiles(getParts("game.zip", 1, 6)).then(async url => {
+        mergeFiles(getParts("game.zip", 0, 19)).then(async url => {
             window.gameZipURL = url;
             let renpypre = document.createElement("script");
             renpypre.src = "renpy-pre.js"
